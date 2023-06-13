@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { 
-  getAuth, 
+  getAuth,
+  deleteUser, 
   signInWithEmailAndPassword,
   signOut, 
   sendPasswordResetEmail,
@@ -46,7 +47,11 @@ export function handleSignout() {
 };
 
 export function handlePasswordReset(email) {
-  return sendPasswordResetEmail(auth, 'adrianbyrtus@yahoo.com')
+  return sendPasswordResetEmail(auth, email)
     .then(() => null)
     .catch((err) => err.code)
 }
+
+export function handleSelfDeletion(email) {
+
+};

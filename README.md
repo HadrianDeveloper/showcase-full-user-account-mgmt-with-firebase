@@ -12,6 +12,11 @@
  - Log out
  - Reset password
 
-### Outstanding features or enhancements:
+## Outstanding features and enhancements
+
  - Delete my account
+ - Apply global context for login username
  - Reset password in-app
+ - Apply global colour, text and button settings
+ - Redaction - ie. reusable buttons
+

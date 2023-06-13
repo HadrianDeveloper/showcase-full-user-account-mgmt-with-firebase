@@ -13,7 +13,7 @@ export default function ResetPassword({navigation, route}) {
                 if (err) {
                     alert(`Error! ${err.slice(5)}`)
                 } else {
-                    alert('An email with reset instructions sent to you')
+                    alert('An email with reset instructions has been sent to you')
                     navigation.navigate('Signin')
                 }
             })
