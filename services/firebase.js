@@ -5,7 +5,9 @@ import {
   signInWithEmailAndPassword,
   signOut, 
   sendPasswordResetEmail,
-  createUserWithEmailAndPassword} from 'firebase/auth';
+  reauthenticateWithCredential,
+  createUserWithEmailAndPassword,
+  EmailAuthProvider} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCDCKADbfhB6rEAil3Em2_Boh9VlAFb2rI",
@@ -50,8 +52,21 @@ export function handlePasswordReset(email) {
   return sendPasswordResetEmail(auth, email)
     .then(() => null)
     .catch((err) => err.code)
+};
+
+export function reauthenticate(password) {
+  const {currentUser} = auth;
+  const {email} = currentUser;
+  const creds = EmailAuthProvider.credential(email, password);
+  
+  return reauthenticateWithCredential(currentUser, creds)
+    .then(() => null)
+    .catch((err) => err.code)
 }
 
-export function handleSelfDeletion(email) {
-
+export function handleSelfDeletion() {
+  const {currentUser} = auth;
+  return deleteUser(currentUser)
+    .then(() => null)
+    .catch((err) => err.code)
 };

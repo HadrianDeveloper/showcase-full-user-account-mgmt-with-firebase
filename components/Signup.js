@@ -26,7 +26,7 @@ export default function Signup({navigation}) {
         .then((msg) => {
           msg.startsWith('auth/')
           ? alert(`Error! ${msg.slice(5)}`)
-          : navigation.navigate('Home')
+          : navigation.navigate('Home', {email: email})
         })
         .catch((err) => alert(err))
     }
