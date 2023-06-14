@@ -2,10 +2,14 @@ import { View, StyleSheet } from "react-native";
 import { handleSignout } from "../services/firebase";
 import GreenButton from "../components/GreenButton";
 import PageHeader from "../components/PageHeader";
+import { useContext } from "react";
+import { UserContext } from '../contexts/UserContext.js';
 
 
 
 export default function Home({navigation}) {
+
+    const [user, setUser] = useContext(UserContext);
 
     function signout() {
         handleSignout()
@@ -14,7 +18,7 @@ export default function Home({navigation}) {
 
     return (
         <View style={s.container}>
-            <PageHeader text='Home' />
+            <PageHeader text={user} />
             <View style={s.settingsContainer}>
                 <GreenButton 
                     text='Sign out' 

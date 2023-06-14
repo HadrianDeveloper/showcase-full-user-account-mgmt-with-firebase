@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { handleSignup } from "../services/firebase";
+import { UserContext } from '../contexts/UserContext';
 import GreenButton from "../components/GreenButton";
 import BlankButton from "../components/BlankButton";
 import PageHeader from "../components/PageHeader";
@@ -11,7 +12,7 @@ import InputPassword from "../components/InputPassword";
 export default function Signup({navigation, route}) {
 
   const {currEmail} = route.params;
-
+  const [user, setUser] = useContext(UserContext)
   const [email, setEmail] = useState(currEmail);
   const [password, setPassword] = useState('');
   const [checkPword, setCheckPword] = useState('');
@@ -24,9 +25,12 @@ export default function Signup({navigation, route}) {
     } else {
       handleSignup(email, password)
         .then((msg) => {
-          msg.startsWith('auth/')
-          ? alert(`Error! ${msg.slice(5)}`)
-          : navigation.navigate('Home', {email: email})
+          if (msg.startsWith('auth/')) {
+            alert(`Error! ${msg.slice(5)}`)
+          } else {
+            setUser(email);
+            navigation.navigate('Home');
+          }
         })
         .catch((err) => alert(err))
     }
@@ -35,7 +39,6 @@ export default function Signup({navigation, route}) {
   return (
     <View style={s.container}>
       <PageHeader text='Create an account' />
-
       <View style={s.form}>
         <InputEmail
           defaultValue={email}
@@ -55,10 +58,9 @@ export default function Signup({navigation, route}) {
           text='Sign in instead' 
           onPress={() => navigation.navigate('Signin')}  />
       </View>
-
     </View>
-  );
-}
+  )
+};
 
 const s = StyleSheet.create({
   container: {

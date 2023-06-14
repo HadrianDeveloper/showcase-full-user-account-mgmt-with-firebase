@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { handleSelfDeletion, reauthenticate } from "../services/firebase";
 import GreenButton from "../components/GreenButton";
 import BlankButton from "../components/BlankButton";
 import PageHeader from "../components/PageHeader";
 import InputPassword from "../components/InputPassword";
-import { handleSelfDeletion, reauthenticate } from "../services/firebase";
+
 
 
 export default function Delete({navigation}) {
@@ -22,11 +23,12 @@ export default function Delete({navigation}) {
                         if (err) alert('Error! ' + err.slice(5))
                         else {
                             alert('Account deleted!');
-                            navigation.navigate('Signup');
+                            navigation.navigate('Signup', {currEmail: null});
                         }
                     })
-            }
-        })
+                }
+            })
+            .catch((err) => console.log(err))
     };
 
     return (

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { handleSignin } from "../services/firebase";
+import { UserContext } from '../contexts/UserContext.js';
 import GreenButton from "../components/GreenButton";
 import BlankButton from "../components/BlankButton";
 import PageHeader from "../components/PageHeader";
@@ -10,6 +11,7 @@ import InputPassword from "../components/InputPassword";
 
 export default function Signin({navigation}) {
 
+    const [user, setUser] = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -18,10 +20,13 @@ export default function Signin({navigation}) {
             alert('Can\'t leave any fields blank')
         } else {
             handleSignin(email, password)
-            .then((msg) =>{
-                msg.startsWith('auth/')
-                ? alert(`Error! ${msg.slice(5)}`)
-                : navigation.navigate('Home', {email: email})
+            .then((msg) => {
+                if (msg.startsWith('auth/')) {
+                    alert(`Error! ${msg.slice(5)}`)
+                } else {
+                    setUser(email);
+                    navigation.navigate('Home');
+                }
             })
             .catch((err) => alert('Error! ' + err.slice(5)))
         }
@@ -42,7 +47,6 @@ export default function Signin({navigation}) {
                     navigation.navigate('ResetPassword', {currEmail: email})}>
                     <Text style={s.forgotten}>Forgotten password?</Text>
                 </Pressable>
-
                 <GreenButton 
                     text='Log in' 
                     onPress={login} />
