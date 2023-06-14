@@ -1,15 +1,10 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { handleSelfDeletion, reauthenticate } from "../services/firebase";
-import GreenButton from "../components/GreenButton";
-import BlankButton from "../components/BlankButton";
-import PageHeader from "../components/PageHeader";
-import InputPassword from "../components/InputPassword";
-
+import {GreenButton, BlankButton, PageHeader, InputPassword } from '../components/componentIndex'
 
 
 export default function Delete({navigation}) {
-
     const [password, setPassword] = useState('');
 
     function deleteMe() {

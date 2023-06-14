@@ -2,15 +2,10 @@ import { useContext, useState } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { handleSignin } from "../services/firebase";
 import { UserContext } from '../contexts/UserContext.js';
-import GreenButton from "../components/GreenButton";
-import BlankButton from "../components/BlankButton";
-import PageHeader from "../components/PageHeader";
-import InputEmail from "../components/InputEmail";
-import InputPassword from "../components/InputPassword";
+import {GreenButton, BlankButton, PageHeader, InputPassword, InputEmail } from '../components/componentIndex'
 
 
 export default function Signin({navigation}) {
-
     const [user, setUser] = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
