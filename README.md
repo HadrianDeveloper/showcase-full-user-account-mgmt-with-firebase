@@ -1,7 +1,7 @@
 
 
 
-
+Project components have been split into screens and reusable components.
 
 ## Features utilising Firebase BaaS
 
@@ -13,11 +13,18 @@
  - Reset my password
  - Delete my account with reauthentication
 
+### Current APIs and hooks
+
+ - useContext
+ - useState
+ - navigation
+ 
+
 ## Outstanding features and enhancements
 
  - Apply global context for login username
  - Reset password in-app
  - Apply global colour, text and button settings
  - apply global error alerter
- - Redaction - ie. reusable buttons
+
 

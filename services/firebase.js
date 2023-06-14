@@ -21,15 +21,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
-/*
-if app doesn't work as expected, use this:
-
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-
-*/
-
 export function handleSignup(email, password) {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((creds) => creds._tokenResponse.email)
@@ -58,7 +49,6 @@ export function reauthenticate(password) {
   const {currentUser} = auth;
   const {email} = currentUser;
   const creds = EmailAuthProvider.credential(email, password);
-  
   return reauthenticateWithCredential(currentUser, creds)
     .then(() => null)
     .catch((err) => err.code)
