@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { handlePasswordReset } from "../services/firebase";
-import GreenButton from "../components/GreenButton";
-import PageHeader from "../components/PageHeader";
-import InputEmail from "../components/InputEmail";
+import {GreenButton, PageHeader, InputEmail } from '../components/componentIndex'
 
 export default function ResetPassword({navigation, route}) {
     const {currEmail} = route.params;

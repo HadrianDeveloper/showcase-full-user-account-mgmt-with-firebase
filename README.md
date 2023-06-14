@@ -12,9 +12,13 @@
  - useState
  - navigation
 
+ ### Packages
+
+ - react-native-root-toast
+
 ## Outstanding features and enhancements
 
- - Create a Splash screen (aka load/boot screen) <--CURRENT
+ - Create a Splash screen (aka load/boot screen)
  - Reset password in-app
  - Apply global colour, text and button settings
  - apply global error alerter

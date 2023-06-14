@@ -1,12 +1,11 @@
-import * as React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { UserProvider } from './contexts/UserContext.js';
 import Signin from './screens/Signin.js';
 import Signup from './screens/Signup.js';
 import Home from './screens/Home.js';
 import ResetPassword from './screens/ResetPassword.js';
 import Delete from './screens/Delete.js';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { UserProvider } from './contexts/UserContext.js';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
